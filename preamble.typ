@@ -129,7 +129,7 @@
   set text(
     fill: current-colors.text,
     size: 20pt,
-    font: ("Libertinus Serif", "Source Han Serif SC"),
+    font: ("Libertinus Serif", "Noto Sans CJK SC", "Source Han Serif SC"),
   )
   show math.equation: set text(font: "Libertinus Math")
 
