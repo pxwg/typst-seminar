@@ -221,6 +221,29 @@
 
 ```typ #if #for``` 等等基本的控制流语句的使用也类似于其他编程语言，语法简洁明了。
 
+== 基本语法：模块
+
+`Typst` 支持模块化编程，允许用户将代码分割成多个文件，便于管理和复用。同时，官方也提供了多种标准库。
+
+#alternatives[
+  - *模块导入*：使用 ```typ#import module: function1, ...``` 语句导入模块。
+  - *标准库*：`Typst` 提供了丰富的标准库，如 `math`、`graphics` 等，方便用户进行数学计算和图形绘制。
+  - *引用函数*：假设函数处于 `module` 中，则可以通过 ```typ #module.function(args)``` 的形式调用。
+][
+  *dictionary 的键值对引用*与函数引用完全相同，通过 `.` 操作符访问模块中的函数。
+
+  #example(title: [Example: Dictionary])[
+    ```typ
+    #let colors = (
+      primary: blue,
+      secondary: green,
+      accent: red,
+    ) // Define a dictionary
+    The primary color is #colors.primary. // Access dictionary value
+    ```
+  ]
+]
+
 == 一些进阶玩法：函数式编程的应用
 
 `Typst` 是一门*函数式编程*语言，与`LaTeX` 的*命令式编程*有本质区别。
@@ -335,7 +358,22 @@
 #slide([
   *问题*：需要通过*外界输入*来切换*预览模式*与*输出模式*
 
-  *Typst 的解决方案*
-
   - Typst 具有*内置的参数输入系统*，可以通过命令行参数的形式传递变量给文档，从而实现动态配置文档内容和样式。
+
+  #alternatives[][
+    #example(title: none)[
+      - API：```typ #sys.inputs``` A dictionary of input parameters.
+      - Input from command arguments:
+        - 编译：```bash typst c main.typ --input colored=false --input preview=false```
+        - 这样就会传递两个 key 给 `main.typ`：`colored` 和 `preview`，value 分别对应 `true` 和 `false`。
+        - 最后通过 ```typ #let colored = sys.inputs.at("colored", default: "false") == "true"``` 获取具体的参数值。
+    ]
+  ][
+    *Typst 的解决方案*：
+    - 通过 `sys.inputs` 获取外界传入的参数
+    - 预览时，为 `tinymist` LSP (用于 VSCode Typst 插件的预览) 传入 `preview=true` 参数
+      - 手写深色主题的 typst 代码
+      - 利用 `preview` 参数激活深色主题，以适配编辑器的暗色主题
+    - 导出 PDF 时，不传入 `preview` 参数，使用浅色主题，以适配 PDF 的常规排版风格
+  ]
 ])
