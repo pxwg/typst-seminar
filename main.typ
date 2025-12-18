@@ -3,7 +3,7 @@
 #show: thu-theme.with(
   title: [Typst 使用简介],
   subtitle: [快速上手与实用技巧],
-  author: [Xinyu XIang],
+  author: [Xinyu Xiang],
   institution: [Department of Physics, Tsinghua University],
   date: datetime.today(),
 )
@@ -72,7 +72,7 @@
     ],
     [
       - 语法冗长 (编写困难)
-      - 编译慢 (输出困难)
+      - 全量编译 (输出困难)
       - 报错晦涩 (调试困难)
       *总结：使用困难*
     ],
@@ -93,3 +93,49 @@
     在这些：$"使用体验" and "灵活性" >> "排版严谨性"$的场合，`LaTeX` 力不从心。
   ]
 ]
+
+== Typst
+
+`Typst` 是一个新兴的排版系统，旨在解决 `LaTeX` 目前存在的一些问题，包括但不限于：
+- *语法*：语法简洁，易于上手
+#only(1)[
+  #grid(
+    columns: (1fr, 1fr),
+    align: center + horizon,
+    [
+      ```tex
+      \section{Introduction}
+      This is a simple document.
+      Here is a list:
+      \begin{itemize}
+        \item First item
+        \item Second item
+      \end{itemize}
+      And here is an equation:
+      \begin{equation}
+        \mathcal{L} = \frac{1}{2} m v^2 - V(x)
+      \end{equation}
+      ```
+    ],
+    [
+      ```typst
+      = Introduction
+      This is a simple document.
+      Here is a list:
+      - First item
+      - Second item
+      And here is an equation:
+      $ cal(L) = 1/2 m v^2 - V(x) $
+      ```
+    ],
+  )
+]
+#pause
+- *编译速度*：增量编译，即时预览，快速反馈
+#only(2)[
+
+]
+#pause
+- *错误信息*：友好的错误提示，易于调试
+#pause
+- *现代化*：内置对现代格式（如 `html`、`EPUB`）的支持，适应多样化需求 (目前仍在开发中，但已经可以嵌入基本的工作流)
