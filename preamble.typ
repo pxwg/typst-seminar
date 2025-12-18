@@ -129,9 +129,9 @@
   set text(
     fill: current-colors.text,
     size: 20pt,
-    font: ("Libertinus Serif", "Noto Sans CJK SC", "Source Han Serif SC"),
+    font: ("Noto Sans CJK SC", "Source Han Serif SC"),
   )
-  show math.equation: set text(font: "Libertinus Math")
+  // show math.equation: set text(font: "Libertinus Math")
 
   set enum(indent: 1em, spacing: 1em)
   set list(indent: 1em, spacing: 1em)
