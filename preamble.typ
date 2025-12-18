@@ -97,7 +97,7 @@
       date: date,
       institution: institution,
     ),
-    config-methods(handout: handout-mode),
+    // config-methods(handout: handout-mode),
     header-right: self => {
       utils.display-current-heading(level: 1)
     },
