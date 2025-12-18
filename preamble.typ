@@ -38,7 +38,6 @@
     radius: 4pt,
     [
       #text(fill: stroke-color, weight: "bold")[#title]
-      #v(0.5em)
       #set text(fill: current-colors.text)
       #body
     ],
@@ -52,6 +51,11 @@
 )
 #let theorem(title: "Theorem", body) = block-box(
   current-colors.accent,
+  title,
+  body,
+)
+#let example(title: "Example", body) = block-box(
+  current-colors.secondary,
   title,
   body,
 )

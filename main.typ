@@ -2,10 +2,10 @@
 
 #show: thu-theme.with(
   title: [Typst 使用简介],
-  subtitle: [快速上手与实用技巧],
+  subtitle: [玩得开心最重要！],
   author: [Xinyu Xiang],
   institution: [Department of Physics, Tsinghua University],
-  date: datetime.today(),
+  date: [2025 年 12 月],
 )
 
 #title-slide()
@@ -178,3 +178,164 @@
   )
 
 ]
+
+= 玩起来！
+
+#link("https://typst.app/docs/tutorial/")[#underline([官方文档])] #link(
+  "https://typst.app/play/",
+)[#underline([Playground])]
+
+== 基本语法：标记
+
+`Typst` 的语法设计简洁直观，易于上手。以下是一些基本的标记语法示例：
+#example(title: [Example: Basic Markup])[
+  ```typ
+  = This is a Heading 1
+  This is a paragraph with *bold text* and _italic text_.
+
+  This is a embedded math formula $1 + 1 = 2$.
+  And this is a block formula:
+  $ Z = integral cal(D)[x(t)] exp(- S[x(t)])  $
+
+  + This is a `numbered list` item
+    - Sub-item
+  + Another numbered item
+  // Everyone loves typst!
+  ```
+]
+
+== 基本语法：脚本
+
+`Typst` 支持脚本编写，允许用户定义变量、函数等，以实现更复杂的排版需求。
+#example(title: [Example: Basic Scripting])[
+  ```typ
+  #let radius = 10 // Define a variable
+  #let area(r) = {
+    let R = r*r // Local variable, using `let` keyword to define
+    return [#R] + math.pi // Output is math object
+  } // Define a function
+  The area of a circle with radius $radius$ is $area(radius)$.
+  ```
+  这样就可以方便地进行计算和动态内容生成。注意，这里算出的 `area` 是一个数学对象，可以直接嵌入到文档中 (例如 $100 pi$)
+]
+
+```typ #if #for``` 等等基本的控制流语句的使用也类似于其他编程语言，语法简洁明了。
+
+== 一些进阶玩法：函数式编程的应用
+
+`Typst` 是一门*函数式编程*语言，与`LaTeX` 的*命令式编程*有本质区别。
+
+#alternatives[
+  - 函数式变成的特点在于，所有的操作都是通过*函数调用*来实现的，而函数本身的输出只与输入有关，不会因为外部状态的变化而改变。
+  - 例如：```typ #circle(radius: 10pt)``` 总是返回一个半径为 `10pt` 的圆形对象，无论它在文档中的位置如何。
+  - 函数式的设计是 `typst` 可以实现*增量编译*的基础。
+][
+  - 函数式编程的一个基础：lambda 表达式
+    - *匿名*函数，通过下列参数定义：
+      - 指定参数列表`inputs: (arg1, arg2, ...)`
+      - 指定输出行为`=> expression`
+    #example(title: [Example: Addition Function])[
+      ```typ
+      #let add = (a, b) => a + b
+      #add(2, 3)  // 返回 5
+      ```
+    ]
+][
+  #example(title: [Example: Theme Function])[
+    ```typ
+    #let test-theme(
+      title: "",
+      document,
+    ) = {...} // some configuration code
+    // Using the theme
+    #show: doc => test-theme(
+      title: [My Document],
+      doc,
+    ) // Which could be simplified as `show: test-theme.with(...)`
+    ```
+    这个用法或许是*颜控*最需要调用的函数！
+  ]
+][
+  #example(title: [Example: Light/Dark Mode Detection])[
+    在网页设计中，往往需要：
+    - 确定当前整体是浅色模式还是深色模式
+    - 根据模式切换不同的样式
+    由于前端代码本质上生成了两份对应于深色/浅色模式的 CSS 与 HTML，Typst 渲染的的公式 (通过 `svg` embedding 嵌入到网页中) 也需要根据当前模式进行调整。具体而言，就是*预渲染两份不同的公式图片*，然后根据网页的模式进行切换。
+  ]
+]
+
+#only(4)[#example(title: [Example: Light/Dark Mode Detection (Continued)])[
+    ```typ
+    #let theme-wrapper(render) = {
+      let light = (color: black)
+      let dark  = (color: white)
+      // Using typst's html generation capabilities
+      html.elem("div", render(light), attrs: (class: "show-light"))
+      html.elem("div", render(dark),  attrs: (class: "show-dark"))
+    }
+
+    [$x^2 + y^2 = z^2$] => theme-wrapper(theme => {
+       // render logic using theme.text-color and theme.bg-color
+    }) // outputs both light and dark versions with appropriate classes
+    ```
+    (当然这个例子只是示例，实际代码会复杂一些)
+  ]
+]
+
+== 一些进阶玩法：Typst 作为高阶 CSS + Markdown
+
+`Markdown` 是一种轻量级标记语言，广泛用于编写文档和博客文章。`Markdown` 本身的排版能力有限，通常需要结合 `CSS` 来实现更复杂的样式需求。
+
+#alternatives[#theorem(
+    title: [Idea],
+  )[
+    设想这样的场景：
+    - 深夜码字，使用暗色主题的编辑器
+    - 预览窗口中，文档使用浅色主题进行渲染
+    - $=>$ 结果：盐津虾新鲜出炉
+    *需求*：编辑器和预览窗口中的主题风格保持一致
+  ]
+][
+  *需求*：编辑器和预览窗口中的主题风格保持一致
+  - Solution I: Markdown + CSS
+  #figure(
+    image(
+      "/assets/md_vsc.png",
+      width: 400pt,
+    ),
+    caption: [Markdown + CSS in VSCode],
+  ) <fig-md_vsc>
+]
+
+#slide([
+  *需求*：编辑器和预览窗口中的主题风格保持一致
+  - Solution I: Markdown + CSS
+    - 高度成熟的方案
+    - *百花齐放*，各大编辑器、博客平台均有各自的实现，且不易统一
+    - `pandoc` 等工具导出为 PDF 时，难以集成复杂的 CSS
+  #pause
+  - Solution II: LaTeX + X：
+    - X$=$一些主题宏包 $==>$ 预览没有问题，但导出 PDF 就翻车 (除非手动调试)
+    - X$=$特定 PDF 阅读器 $==>$ 折腾各大 PDF 阅读器的颜色配置 + 双向查找等功能，且*未必成功*
+    - X$=$自定义宏包 $==>$ 想想都麻烦，且导出 PDF 仍然翻车
+])
+
+#slide([
+  *需求*：编辑器和预览窗口中的主题风格保持一致
+
+  #pause
+  *细分需求*：
+  - 编辑 + 预览工作流中，适配编辑器配色
+  - 导出 PDF 时，正常的 PDF 排版风格
+
+  #pause
+  *问题*：需要通过*外界输入*来切换上述情况
+])
+
+#slide([
+  *问题*：需要通过*外界输入*来切换*预览模式*与*输出模式*
+
+  *Typst 的解决方案*
+
+  - Typst 具有*内置的参数输入系统*，可以通过命令行参数的形式传递变量给文档，从而实现动态配置文档内容和样式。
+])
