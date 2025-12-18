@@ -68,13 +68,13 @@
       - 用户广泛 (支持良好)
       - 宏包丰富 (功能强大)
       - 复杂排版 (成果漂亮)
-      *总结：排版利器*
+      *排版利器*
     ],
     [
       - 语法冗长 (编写困难)
       - 全量编译 (输出困难)
       - 报错晦涩 (调试困难)
-      *总结：使用困难*
+      *使用困难*
     ],
   )
 
@@ -130,12 +130,51 @@
     ],
   )
 ]
-#pause
-- *编译速度*：增量编译，即时预览，快速反馈
+// HACK: avoid wrong slide counting while using #only and #pause
 #only(2)[
+  - *编译速度*：增量编译，即时预览，快速反馈
+  #link("./assets/typst_preview.mp4")[#underline(
+      [I'm a Typst preview demo video. Click to play.],
+    )]
+]
+#only(3)[
+  - *编译速度*：增量编译，即时预览，快速反馈
+  - *错误信息*：友好的错误提示，易于调试，甚至在编辑器中直接显示错误
+
+  #grid(
+    columns: (1fr, 1fr),
+    align: center + horizon,
+    [
+      #figure(
+        image(
+          "/assets/typst_error.png",
+        ),
+        caption: [Typst 错误提示示例],
+      ) <fig-typst_error>
+    ],
+    [
+      #figure(
+        image("/assets/latex_error.png", width: 80%),
+        caption: [LaTeX 错误提示示例],
+      ) <fig-latex_error>],
+  )
+]
+#only(4)[
+  - *现代化*：内置对网页、屏幕等多种输出格式的支持，适应现代工作流
+
+  #grid(
+    columns: (1fr, 1fr),
+    align: center + horizon,
+    [
+      #figure(
+        image("/assets/typst_site.png"),
+      )
+    ],
+    [
+      #figure(
+        image("/assets/typst_site_1.png", height: 250pt),
+      )
+    ],
+  )
 
 ]
-#pause
-- *错误信息*：友好的错误提示，易于调试
-#pause
-- *现代化*：内置对现代格式（如 `html`、`EPUB`）的支持，适应多样化需求 (目前仍在开发中，但已经可以嵌入基本的工作流)
