@@ -24,6 +24,7 @@
 #let inputs = sys.inputs
 #let colored = inputs.at("colored", default: "false") == "true"
 #let preview = inputs.at("preview", default: "false") == "true"
+#let handout = inputs.at("handout", default: "false") == "true"
 
 #let current-colors = if preview { color_palette_dark } else {
   color_palette_light
@@ -84,6 +85,7 @@
   show: university-theme.with(
     aspect-ratio: "16-9",
 
+    config-methods(handout: handout),
     config-page(
       margin: (top: 3em, bottom: 2em, x: 2em),
     ),
