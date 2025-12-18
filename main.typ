@@ -1,24 +1,21 @@
-#import "@preview/touying:0.6.1": *
-#import themes.simple: *
+#import "preamble.typ": *
 
-#show: simple-theme.with(
-  aspect-ratio: "16-9",
-  footer: [My Presentation],
+#show: thu-theme.with(
+  title: [Typst 使用简介],
+  subtitle: [快速上手与实用技巧],
+  author: [Xinyu XIang],
+  institution: [Department of Physics, Tsinghua University],
+  date: datetime.today(),
 )
 
-#title-slide[Typst 幻灯片示例]
+#title-slide()
 
+= 动机：Why Typst?
 
-= 第一部分基础概念
+== Typst 的前任
 
-== 为什么选择 Typst?
-
-1. _速度快_: 增量编译，即时预览。
-2. _语法简洁_: 比如 $E = m c^2$ 无需繁琐宏包。
-3. _脚本强大_: 真正的编程语言支持。
+如果要谈论 `Typst` 被发展的动机，我们就不得不提到它的前任 `LaTeX`。
 
 #pause
 
-*这里的内容会在点击后出现。*
-
-== 复杂布局示例
+`LaTeX` 作为一个强大的排版系统，已经被广泛使用了几十年。然而，它也存在一些显著的缺点：
