@@ -1,14 +1,15 @@
-name: Build and Release PDF
+name: Build PDF and Create Release
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,7 +21,7 @@ jobs:
       - name: Build PDF
         run: typst c main.typ --input handout=true
 
-      - name: Upload PDF to Release
+      - name: Create Release and Upload PDF
         uses: softprops/action-gh-release@v1
         with:
           files: main.pdf
