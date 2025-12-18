@@ -1,0 +1,26 @@
+name: Build and Release PDF
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v3
+
+      - name: Build PDF
+        run: typst c main.typ --input handout=true
+
+      - name: Upload PDF to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: main.pdf
