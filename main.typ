@@ -21,13 +21,13 @@
 #alternatives[#align(center)[
     #figure(
       image("/assets/latex_logo.png", width: 200pt),
-      caption: [latex 标志],
+      caption: [LaTeX 标志],
     ) <fig-latex_logo>
   ]
 ][#align(center)[
     #figure(
       image("/assets/latex_logo.png", width: 200pt),
-      caption: [latex 标志],
+      caption: [LaTeX 标志],
     ) <fig-latex_logo>
   ]
 ][
@@ -41,7 +41,7 @@
     ),
     figure(
       image("/assets/arxiv_logo.jpg", width: 160pt),
-      caption: [Arxiv 标志],
+      caption: [arXiv 标志],
     ),
   )
 ]
@@ -114,7 +114,7 @@
   ][
     我们还可能有*更进阶*的需求：例如，写个 blog 发到自己的博客上，这需要：
     - 为 HTML 编辑、输出特定样式
-    - 方便地集成到静态网站架构 (如 Astro、Hugo 中)
+    - 方便地集成到静态网站架构 (如 Astro, Hugo 中)
   ][
     - 记笔记：快速编辑、所用所得、#underline[稳定输出 PDF 供存档] (这个需求淘汰了`Markdown`)
     - 写博客：为不同 Target 定制样式、集成到对应工作流
@@ -325,7 +325,7 @@
     在网页设计中，往往需要：
     - 确定当前整体是浅色模式还是深色模式
     - 根据模式切换不同的样式
-    由于前端代码本质上生成了两份对应于深色/浅色模式的 CSS 与 HTML，Typst 渲染的的公式 (通过 `svg` embedding 嵌入到网页中) 也需要根据当前模式进行调整。具体而言，就是*预渲染两份不同的公式图片*，然后根据网页的模式进行切换。
+    由于前端代码本质上生成了两份对应于深色/浅色模式的 CSS 与 HTML, Typst 渲染的的公式 (通过 `svg` embedding 嵌入到网页中) 也需要根据当前模式进行调整。具体而言，就是*预渲染两份不同的公式图片*，然后根据网页的模式进行切换。
   ]
 ]
 
@@ -368,7 +368,7 @@
       "/assets/md_vsc.png",
       width: 400pt,
     ),
-    caption: [Markdown + CSS in VSCode],
+    caption: [Markdown + CSS in VS Code],
   ) <fig-md_vsc>
 ]
 
@@ -413,8 +413,8 @@
   ][
     *Typst 的解决方案*：
     - 通过 `sys.inputs` 获取外界传入的参数
-    - 预览时，为 `tinymist` LSP (用于 VSCode Typst 插件的预览) 传入 `preview=true` 参数
-      - 手写深色主题的 typst 代码
+    - 预览时，为 `tinymist` LSP (用于 VS Code Typst 插件的预览) 传入 `preview=true` 参数
+      - 手写深色主题的 Typst 代码
       - 利用 `preview` 参数激活深色主题，以适配编辑器的暗色主题
     - 导出 PDF 时，不传入 `preview` 参数，使用浅色主题，以适配 PDF 的常规排版风格
   ]
