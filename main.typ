@@ -21,7 +21,13 @@
 #alternatives[#align(center)[
     #figure(
       image("/assets/latex_logo.png", width: 200pt),
-      caption: [LaTeX 标志],
+      caption: [latex 标志],
+    ) <fig-latex_logo>
+  ]
+][#align(center)[
+    #figure(
+      image("/assets/latex_logo.png", width: 200pt),
+      caption: [latex 标志],
     ) <fig-latex_logo>
   ]
 ][
@@ -43,6 +49,8 @@
 #pause
 
 - `LeTeX` 已经有 30 多年的历史了
+
+#pause
 #alternatives[
   - *自然有很多好处！！*
     - 老资历，用户广泛，出版业、预印本服务器的事实标准
@@ -56,29 +64,48 @@
 ]
 
 #slide[
-  #table(
-    columns: (1fr, 1fr),
-    inset: 1em,
-    align: top,
-    stroke: (x, y) => if y == 0 { (bottom: 0.5pt + gray) } else { none },
+  #alternatives[
+    #table(
+      columns: (1fr, 1fr),
+      inset: 1em,
+      align: top,
+      stroke: (x, y) => if y == 0 { (bottom: 0.5pt + gray) } else { none },
 
-    [*Good Features*], [*Bad Features*],
+      [*Good Features*], [],
 
-    [
-      - 用户广泛 (支持良好)
-      - 宏包丰富 (功能强大)
-      - 复杂排版 (成果漂亮)
-      *排版利器*
-    ],
-    [
-      - 语法冗长 (编写困难)
-      - 重复编译 (输出困难)
-      - 报错晦涩 (调试困难)
-      - 全量编译 (预览困难)
-      *使用相对困难，流畅度不佳*
-    ],
-  )
+      [
+        - 用户广泛 (支持良好)
+        - 宏包丰富 (功能强大)
+        - 复杂排版 (成果漂亮)
+        *排版利器*
+      ],
+    )
+  ][
+    #table(
+      columns: (1fr, 1fr),
+      inset: 1em,
+      align: top,
+      stroke: (x, y) => if y == 0 { (bottom: 0.5pt + gray) } else { none },
 
+      [*Good Features*], [*Bad Features*],
+
+      [
+        - 用户广泛 (支持良好)
+        - 宏包丰富 (功能强大)
+        - 复杂排版 (成果漂亮)
+        *排版利器*
+      ],
+      [
+        - 语法冗长 (编写困难)
+        - 重复编译 (输出困难)
+        - 报错晦涩 (调试困难)
+        - 全量编译 (预览困难)
+        *使用相对困难，流畅度不佳*
+      ],
+    )
+  ]
+
+  #pause
   #pause
 
   #alternatives[
@@ -99,7 +126,8 @@
 
 `Typst` 是一个新兴的排版系统，旨在解决 `LaTeX` 目前存在的一些问题，包括但不限于：
 - *语法*：语法简洁，易于上手
-#only(1)[
+#pause
+#only(2)[
   #grid(
     columns: (1fr, 1fr),
     align: center + horizon,
@@ -132,17 +160,17 @@
   )
 ]
 // HACK: avoid wrong slide counting while using #only and #pause
-#only(2)[
+#only(3)[
   - *编译速度*：单次编译，增量编译，即时预览，快速反馈
 ]
-#only(3)[
+#only(4)[
   - *编译速度*：单次编译，增量编译，即时预览，快速反馈
   - *单次编译*：不需要 `latex` -> `bibtex` -> `latex` -> `latex` 的重复编译链，一次生成
     - 本地 build 减少等待时间
     - CI 减少资源消耗 (省钱)
 ]
 
-#only(4)[
+#only(5)[
   - *编译速度*：单次编译，增量编译，即时预览，快速反馈
   - *单次编译*：不需要 `latex` -> `bibtex` -> `latex` -> `latex` 的重复编译链，一次生成
     - 本地 build 减少等待时间
@@ -151,7 +179,7 @@
     - 适合笔记等频繁修改的场景，真正*所见即所得*
 ]
 
-#only(5)[
+#only(6)[
   - *编译速度*：增量编译，即时预览，快速反馈
   - *错误信息*：友好的错误提示，易于调试，甚至在编辑器中直接显示错误
 
@@ -173,7 +201,7 @@
       ) <fig-latex_error>],
   )
 ]
-#only(6)[
+#only(7)[
   - *现代化*：内置对网页、屏幕等多种输出格式的支持，适应现代工作流
 
   #grid(
