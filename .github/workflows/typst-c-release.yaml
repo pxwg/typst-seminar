@@ -15,28 +15,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Fonts
+      - name: Prepare Fonts
         run: |
-          sudo apt-get update
-          sudo apt-get install -y unzip wget
+          mkdir -p fonts
 
           wget https://github.com/adobe-fonts/source-han-serif/releases/download/2.003R/09_SourceHanSerifSC.zip
           unzip -q 09_SourceHanSerifSC.zip
-          sudo mkdir -p /usr/share/fonts/opentype/source-han-serif
-          find . -path "*/OTF/SimplifiedChinese/*.otf" -exec sudo cp {} /usr/share/fonts/opentype/source-han-serif/ \;
+          find . -path "*/OTF/SimplifiedChinese/*.otf" -exec cp {} fonts/ \;
 
           wget https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.zip
           unzip -q Libertinus-7.040.zip
-          sudo mkdir -p /usr/share/fonts/opentype/libertinus
-          sudo cp Libertinus-7.040/static/OTF/*.otf /usr/share/fonts/opentype/libertinus/
+          cp Libertinus-7.040/static/OTF/*.otf fonts/
 
-          fc-cache -fv
+          ls -lh fonts/
 
       - name: Install Typst
         uses: typst-community/setup-typst@v3
 
       - name: Build PDF
-        run: typst c main.typ --input handout=true
+        # build pdf with font-path
+        run: typst c main.typ --input handout=true --font-path fonts/
 
       - name: Create Release and Upload PDF
         uses: softprops/action-gh-release@v1
