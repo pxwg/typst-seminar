@@ -214,7 +214,7 @@
   + This is a `numbered list` item
     - Sub-item
   + Another numbered item
-  // Everyone loves typst!
+  // We love typst!
   ```
 ]
 
