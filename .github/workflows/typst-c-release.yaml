@@ -20,9 +20,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y unzip wget
 
-          wget https://github.com/adobe-fonts/source-han-serif/raw/release/Variable/OTF/SourceHanSerifSC-VF.otf
+          wget https://github.com/adobe-fonts/source-han-serif/releases/download/2.003R/09_SourceHanSerifSC.zip
+          unzip -q 09_SourceHanSerifSC.zip
           sudo mkdir -p /usr/share/fonts/opentype/source-han-serif
-          sudo cp SourceHanSerifSC-VF.otf /usr/share/fonts/opentype/source-han-serif/
+          find . -path "*/OTF/SimplifiedChinese/*.otf" -exec sudo cp {} /usr/share/fonts/opentype/source-han-serif/ \;
 
           wget https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.zip
           unzip -q Libertinus-7.040.zip
