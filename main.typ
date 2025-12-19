@@ -49,7 +49,7 @@
     - 扩展性好，社区资源丰富 (喜欢我 `TeXLive` 一下子装了 $5 "GB"$ 的宏包吗？)
     - 经受住了时间的考验 (稳定性好，支持复杂排版)
 ][
-  - *但我不认为大家喜欢 ta*
+  - *但存在一些不令人满意的地方*
     - ```tex\begin{...} ... \end{...}```，```tex\command{...}```
     - 编译慢 (尤其是大文档)
     - 错误信息晦涩难懂
@@ -72,9 +72,10 @@
     ],
     [
       - 语法冗长 (编写困难)
-      - 全量编译 (输出困难)
+      - 重复编译 (输出困难)
       - 报错晦涩 (调试困难)
-      *使用困难*
+      - 全量编译 (预览困难)
+      *使用相对困难，流畅度不佳*
     ],
   )
 
@@ -132,12 +133,25 @@
 ]
 // HACK: avoid wrong slide counting while using #only and #pause
 #only(2)[
-  - *编译速度*：增量编译，即时预览，快速反馈
-  #link("./assets/typst_preview.mp4")[#underline(
-      [I'm a Typst preview demo video. Click to play.],
-    )]
+  - *编译速度*：单次编译，增量编译，即时预览，快速反馈
 ]
 #only(3)[
+  - *编译速度*：单次编译，增量编译，即时预览，快速反馈
+  - *单次编译*：不需要 `latex` -> `bibtex` -> `latex` -> `latex` 的重复编译链，一次生成
+    - 本地 build 减少等待时间
+    - CI 减少资源消耗 (省钱)
+]
+
+#only(4)[
+  - *编译速度*：单次编译，增量编译，即时预览，快速反馈
+  - *单次编译*：不需要 `latex` -> `bibtex` -> `latex` -> `latex` 的重复编译链，一次生成
+    - 本地 build 减少等待时间
+    - CI 减少资源消耗 (省钱)
+  - *增量编译*：只重新编译修改过的部分，提升大文档的编译效率
+    - 适合笔记等频繁修改的场景，真正*所见即所得*
+]
+
+#only(5)[
   - *编译速度*：增量编译，即时预览，快速反馈
   - *错误信息*：友好的错误提示，易于调试，甚至在编辑器中直接显示错误
 
@@ -159,7 +173,7 @@
       ) <fig-latex_error>],
   )
 ]
-#only(4)[
+#only(6)[
   - *现代化*：内置对网页、屏幕等多种输出格式的支持，适应现代工作流
 
   #grid(
@@ -366,7 +380,7 @@
       - Input from command arguments:
         - 编译：```bash typst c main.typ --input colored=false --input preview=false```
         - 这样就会传递两个 key 给 `main.typ`：`colored` 和 `preview`，value 分别对应 `true` 和 `false`。
-        - 最后通过 ```typ #let colored = sys.inputs.at("colored", default: "false") == "true"``` 获取具体的参数值。
+        - 最后通过 ```typ #let colored = sys.inputs.at("colored", default: "false") == "true"``` 获取具体的参数值 (受制于 shell 的设计，`input` 只能有 `string` 类型，这里将其转换为了 `bool` 类型)。
     ]
   ][
     *Typst 的解决方案*：
