@@ -17,10 +17,15 @@ jobs:
 
       - name: Install Fonts
         run: |
-          wget https://github.com/adobe-fonts/source-han-serif/releases/download/2.002R/SourceHanSerifSC.zip
-          unzip -q SourceHanSerifSC.zip
+          sudo apt-get update
+          sudo apt-get install -y unzip wget
+
+          wget https://github.com/adobe-fonts/source-han-serif/releases/download/2.002R/06_SourceHanSerifSC.zip
+          unzip -q 06_SourceHanSerifSC.zip
+          
           sudo mkdir -p /usr/share/fonts/opentype/source-han-serif
-          sudo cp SourceHanSerifSC/*.otf /usr/share/fonts/opentype/source-han-serif/
+          
+          find SourceHanSerifSC -name "*.otf" -exec sudo cp {} /usr/share/fonts/opentype/source-han-serif/ \;
 
           wget https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.zip
           unzip -q Libertinus-7.040.zip
