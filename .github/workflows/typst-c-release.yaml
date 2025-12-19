@@ -17,12 +17,16 @@ jobs:
 
       - name: Install Fonts
         run: |
-          sudo apt-get update
-          sudo apt-get install -y unzip wget fonts-noto-cjk
+          wget https://github.com/adobe-fonts/source-han-serif/releases/download/2.002R/SourceHanSerifSC.zip
+          unzip -q SourceHanSerifSC.zip
+          sudo mkdir -p /usr/share/fonts/opentype/source-han-serif
+          sudo cp SourceHanSerifSC/*.otf /usr/share/fonts/opentype/source-han-serif/
+
           wget https://github.com/alerque/libertinus/releases/download/v7.040/Libertinus-7.040.zip
           unzip -q Libertinus-7.040.zip
           sudo mkdir -p /usr/share/fonts/opentype/libertinus
           sudo cp Libertinus-7.040/static/OTF/*.otf /usr/share/fonts/opentype/libertinus/
+
           fc-cache -fv
 
       - name: Install Typst
