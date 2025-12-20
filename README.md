@@ -6,6 +6,12 @@
 
 本次燎原沙龙会涉及实操环节，为了获得更好的体验，建议同学们提前准备好相应的环境。
 
+### 在线环境
+
+如果你只是想要 Have a try 的话，可以使用：
+- [Typst Playground](https://typst.app/play/)：官方提供的在线编辑和预览环境，适合快速尝试 Typst 语法和功能。不需要登录。
+- Typst 在[Typst App](https://typst.app/)上也提供了在线编辑和预览功能，注册账号后可以保存和管理你的 Typst 文档。
+
 ### VSCode 环境
 
 使用 VSCode 作为 Typst 的编辑环境。请安装 [Tinymist Typst](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist) 插件来获得代码高亮和预览功能。
